@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.github.jagrosh:lavaplayer:jmusicbot-5ae34fd221-1">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/github/jagrosh/lavaplayer/jmusicbot-5ae34fd221-1/lavaplayer-jmusicbot-5ae34fd221-1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/github/jagrosh/lavaplayer/jmusicbot-5ae34fd221-1/lavaplayer-jmusicbot-5ae34fd221-1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/github/jagrosh/lavaplayer/jmusicbot-5ae34fd221-1/lavaplayer-jmusicbot-5ae34fd221-1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

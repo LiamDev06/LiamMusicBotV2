@@ -1,0 +1,1 @@
+Fix commands, both permission wise, organize, remove and add
