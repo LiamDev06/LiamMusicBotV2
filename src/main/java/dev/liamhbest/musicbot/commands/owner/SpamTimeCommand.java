@@ -23,17 +23,31 @@ public class SpamTimeCommand extends OwnerCommand {
 
     @Override
     protected void execute(CommandEvent event) {
-        if (event.getArgs().length() == 0) {
+        String[] args = event.getArgs().split(" ");
+
+        if (args.length == 0) {
             // Select who to spam
             event.reply(new EmbedBuilder().setColor(Color.RED)
-                    .setAuthor("Missing arguments! Please select someone to spam, use !spamtime <@user> <times>").build());
+                    .setAuthor("Missing arguments! Please select someone to spam, use !spamtime <@user> <times> <message>").build());
             return;
         }
 
-        if (event.getArgs().length() == 1) {
+        if (args.length == 1) {
             // Select how many times
             event.reply(new EmbedBuilder().setColor(Color.RED)
-                    .setAuthor("Missing arguments! Please select how many times to spam, use !spamtime <@user> <times>").build());
+                    .setAuthor("Missing arguments! Please select how many times to spam, use !spamtime <@user> <times> <message>").build());
+            return;
+        }
+
+        if (args.length == 2) {
+            event.reply(new EmbedBuilder().setColor(Color.RED)
+                    .setAuthor("Missing arguments! Please input a message to spam with, use !spamtime <@user> <times> <message>").build());
+            return;
+        }
+
+        if (event.getMessage().getMentionedMembers().size() == 0) {
+            event.reply(new EmbedBuilder().setColor(Color.RED)
+                    .setAuthor("Error! Invalid user spam input!").build());
             return;
         }
 
@@ -48,36 +62,23 @@ public class SpamTimeCommand extends OwnerCommand {
             return;
         }
 
-        if (who.getIdLong() == 447058319341781022L) {
-            event.getChannel().sendMessage("**INITIATING SPAM!** You will spam " + who.getEffectiveName()).queue();
+        StringBuilder builder = new StringBuilder();
+        int loop = 0;
 
-            for (int i = 0; i < times; i++) {
-                event.getChannel().sendMessage("**SPAM! __GÅ UT GÅ UT!__** <@" + who.getId() + ">").queue();
+        for (String s : event.getArgs().split(" ")) {
+            if (loop > 1) {
+                builder.append(s).append(" ");
             }
-        } else {
-            event.getChannel().sendMessage("**INITIATING SPAM!** You will spam " + who.getEffectiveName() + " " + times + " times!").queue();
 
-            for (int i = 0; i<times; i++) {
-                event.getChannel().sendMessage("**SPAM!** <@" + who.getId() + ">").queue();
-            }
+            loop++;
         }
 
-        /* SIMP SPAM
-        if (who.getIdLong() == 447058319341781022L) {
-            event.getChannel().sendMessage("**INITIATING SPAM!** You will spam " + who.getEffectiveName() + " and " + "<@650639396797939728> " + + times + " times!").queue();
+        final String message = builder.toString().trim();
+        event.getChannel().sendMessage("**INITIATING SPAM!** You will spam " + who.getEffectiveName() + " " + times + " times with the message `" + message + "`.").queue();
 
-            for (int i = 0; i < times; i++) {
-                event.getChannel().sendMessage("**SPAM! STOP SIMPING!** <@" + who.getId() + "> <@650639396797939728>").queue();
-            }
-        } else {
-            event.getChannel().sendMessage("**INITIATING SPAM!** You will spam " + who.getEffectiveName() + " " + times + " times!").queue();
-
-            for (int i = 0; i<times; i++) {
-                event.getChannel().sendMessage("**SPAM!** <@" + who.getId() + ">").queue();
-            }
+        for (int i = 0; i<times; i++) {
+            event.getChannel().sendMessage("**" + message + "** <@" + who.getId() + ">").queue();
         }
-
-         */
     }
 }
 
